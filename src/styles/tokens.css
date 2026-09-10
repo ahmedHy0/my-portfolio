@@ -1,0 +1,122 @@
+/* ============================================================
+   DATA ENGINEER PORTFOLIO — DESIGN TOKENS
+   Phase 03 visual foundation. Brand source: Assets/logo.jpg
+   (AH circuit monogram, teal #4FD3CE → sky blue #57B6E9 on
+   near-black #080D11). Do not scatter raw colors in components;
+   consume these tokens only.
+   ============================================================ */
+
+:root {
+  /* ---------- Backgrounds (derived from the logo's own near-black) ---------- */
+  --bg-0: #060a0f;            /* deepest graphite — page background */
+  --bg-1: #0a1119;            /* midnight blue — hero / section bands */
+  --bg-2: #0e1722;            /* raised band — alt sections */
+  --surface: #101c29;         /* elevated panel — cards, modals */
+  --surface-soft: #152433;    /* nested panel — diagrams, inner cards */
+  --surface-glass: rgba(16, 28, 41, 0.78);
+
+  /* ---------- Text hierarchy ---------- */
+  --text-0: #f2f7fa;          /* headings, primary copy */
+  --text-1: #c3d0db;          /* paragraphs */
+  --text-2: #8296a8;          /* metadata, muted labels */
+  --text-3: #5c6f80;          /* disabled / faint annotations — never body text */
+
+  /* ---------- Brand accent (logo teal, brightened for AA on dark) ---------- */
+  --accent: #4fd8d1;          /* primary interaction: CTA, active nodes, brand */
+  --accent-strong: #6ff0e8;   /* hover / emphasis of the brand accent */
+  --accent-dim: rgba(79, 216, 209, 0.14);
+  --accent-glow: rgba(79, 216, 209, 0.28);
+  --cursor-glow: #00f3ff;     /* custom cursor core glow — vibrant cyan accent */
+
+  /* ---------- Data-flow accent (logo sky blue) ---------- */
+  --flow: #5fc0f2;            /* data movement: links, lineage lines, nav signal */
+  --flow-dim: rgba(95, 192, 242, 0.14);
+
+  /* ---------- States ---------- */
+  --state-healthy: #7df0b6;   /* mint — completed, healthy pipeline, available */
+  --state-healthy-dim: rgba(125, 240, 182, 0.12);
+  --state-warning: #ffc857;   /* amber — pending, needs review, data quality */
+  --state-warning-dim: rgba(255, 200, 87, 0.12);
+  --state-error: #ff7373;     /* coral — real errors/failures only */
+  --state-error-dim: rgba(255, 115, 115, 0.12);
+
+  /* ---------- Architecture / intelligence accent ---------- */
+  --arch: #9b8cff;            /* violet — warehouse, analytics, architecture layers */
+  --arch-dim: rgba(155, 140, 255, 0.13);
+
+  /* ---------- Borders ---------- */
+  --line: rgba(148, 188, 214, 0.16);       /* default hairline */
+  --line-strong: rgba(148, 188, 214, 0.30);
+  --line-accent: rgba(79, 216, 209, 0.45); /* accent-tinted border */
+
+  /* ---------- Shadows ---------- */
+  --shadow-1: 0 1px 2px rgba(2, 5, 9, 0.5);
+  --shadow-2: 0 4px 16px rgba(2, 5, 9, 0.45);
+  --shadow-3: 0 16px 48px rgba(2, 5, 9, 0.55);   /* modals */
+  --glow-accent: 0 0 24px var(--accent-glow);    /* active data nodes only */
+
+  /* ---------- Radius ---------- */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-pill: 999px;
+
+  /* ---------- Spacing scale (4px base) ---------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+  --content-max: 1200px;
+
+  /* ---------- Typography ---------- */
+  --font-display: 'Space Grotesk Variable', 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter Variable', 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, monospace;
+
+  --text-display-1: clamp(2.5rem, 1.4rem + 4.5vw, 4.25rem);  /* h1 hero */
+  --text-display-2: clamp(1.9rem, 1.3rem + 2.4vw, 2.75rem);  /* h2 sections */
+  --text-heading: clamp(1.25rem, 1.1rem + 0.7vw, 1.5rem);    /* h3 cards */
+  --text-body-lg: 1.125rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-micro: 0.75rem;    /* data labels, timestamps (mono) */
+  --leading-tight: 1.12;
+  --leading-body: 1.65;
+
+  /* ---------- Motion ---------- */
+  --dur-micro: 150ms;        /* hover, focus, toggles */
+  --dur-reveal: 1200ms;      /* section scroll reveals — slow, noticeable fade/slide */
+  --dur-transition: 750ms;   /* major transitions */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ---------- Breakpoints (used in CSS via media queries; JS reads tokens) ---------- */
+  --bp-xs: 480px;
+  --bp-sm: 768px;
+  --bp-md: 1024px;
+  --bp-lg: 1280px;
+  --bp-xl: 1440px;
+
+  /* ---------- Signature gradient (the logo gradient, atmosphere only) ---------- */
+  --grad-flow: linear-gradient(120deg, var(--accent), var(--flow));
+  --grad-arch: linear-gradient(120deg, var(--flow), var(--arch));
+  --grad-healthy: linear-gradient(120deg, var(--state-healthy), var(--accent));
+}
+
+/* Semantic aliases — components reference these, so a future light theme
+   or re-tint only touches this layer. */
+:root {
+  --color-cta: var(--accent);
+  --color-link: var(--flow);
+  --color-success: var(--state-healthy);
+  --color-warning: var(--state-warning);
+  --color-danger: var(--state-error);
+  --focus-ring: 0 0 0 2px var(--bg-0), 0 0 0 4px var(--accent);
+}

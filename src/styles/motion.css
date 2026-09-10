@@ -1,0 +1,394 @@
+/* ============================================================
+   PHASE 05 — MOTION & INTERACTION LAYER
+   Scroll reveals, intro sequence, hero activation, nav signal,
+   skill selection, project modal, pipeline flow, button packets.
+   Rules: transform/opacity only, one-shot where possible, every
+   state readable without hover, full reduced-motion fallbacks.
+   Content is hidden ONLY under `html.js` — without JS everything
+   stays visible.
+   ============================================================ */
+
+/* ---------- 1. Scroll reveals ---------- */
+/* The class is only ever added by JS, so without JS everything stays visible.
+   Sections start fully invisible and 40px low, then fade/slide in over 1.2s
+   once the IntersectionObserver confirms they are inside the visible window. */
+.js .scroll-reveal {
+  opacity: 0 !important;
+  transform: translateY(40px) !important;
+  transition:
+    opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  will-change: opacity, transform;
+}
+
+.js .scroll-reveal.is-visible {
+  opacity: 1 !important;
+  /* transform: none (not translateY(0)) so the revealed element stops being
+     the containing block for position:fixed descendants (the project modal). */
+  transform: none !important;
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ---------- 2. Intro: data-session boot ---------- */
+.intro { transition: opacity 240ms var(--ease-out); }
+.intro--leaving { opacity: 0; pointer-events: none; }
+
+.intro__panel > * {
+  animation: intro-rise 420ms var(--ease-out) both;
+}
+.intro__lines li {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-5);
+  opacity: 0;
+  animation: intro-line 200ms var(--ease-out) forwards;
+  animation-delay: calc(120ms + var(--i, 0) * 190ms);
+}
+.intro__line-status {
+  color: var(--state-healthy);
+  opacity: 0;
+  animation: intro-ok 160ms var(--ease-out) forwards;
+  animation-delay: calc(300ms + var(--i, 0) * 190ms);
+}
+
+@keyframes intro-rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes intro-line {
+  from { opacity: 0; transform: translateX(-6px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes intro-ok {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ---------- 3. Hero activation (after the session opens) ---------- */
+/* Content composes in once; the pipeline draws and nodes activate in order. */
+.js .hero__content > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 560ms var(--ease-out), transform 560ms var(--ease-out);
+}
+.js .hero--active .hero__content > * { opacity: 1; transform: none; }
+.js .hero--active .hero__content > :nth-child(2) { transition-delay: 80ms; }
+.js .hero--active .hero__content > :nth-child(3) { transition-delay: 160ms; }
+.js .hero--active .hero__content > :nth-child(4) { transition-delay: 240ms; }
+.js .hero--active .hero__content > :nth-child(5) { transition-delay: 320ms; }
+.js .hero--active .hero__content > :nth-child(n + 6) { transition-delay: 400ms; }
+
+.js .hero__portrait-frame {
+  opacity: 0;
+  transform: scale(0.97);
+  transition: opacity 650ms var(--ease-out), transform 650ms var(--ease-out);
+}
+.js .hero--active .hero__portrait-frame { opacity: 1; transform: none; }
+
+/* Nodes activate in sequence via --i (set inline in Hero). */
+.js .hero__badge {
+  opacity: 0;
+  transform: translateY(6px) scale(0.92);
+}
+.js .hero--active .hero__badge {
+  animation: node-in 320ms var(--ease-out) forwards;
+  animation-delay: calc(500ms + var(--i, 0) * 130ms);
+}
+@keyframes node-in {
+  to { opacity: 1; transform: none; }
+}
+
+/* ---------- 4. Navigation signal (scrollspy) ---------- */
+.site-nav__link {
+  position: relative;
+}
+.site-nav__link::after {
+  content: '';
+  position: absolute;
+  left: var(--space-3);
+  right: var(--space-3);
+  bottom: 8px;
+  height: 2px;
+  border-radius: var(--radius-pill);
+  background: var(--grad-flow);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-micro) var(--ease-out);
+}
+.site-nav__link--active {
+  color: var(--text-0);
+}
+.site-nav__link--active::after { transform: scaleX(1); }
+
+/* ---------- 5. Buttons: data-packet streak on hover/focus ---------- */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 18px;
+  height: 2px;
+  border-radius: var(--radius-pill);
+  background: currentColor;
+  opacity: 0;
+  transform: translateX(-24px) translateY(-50%);
+  pointer-events: none;
+}
+.btn:hover::after,
+.btn:focus-visible::after {
+  animation: packet-slide 620ms var(--ease-out);
+}
+/* Fixed-width sweep: the streak travels past any button width while the
+   button's own overflow:hidden clips it. */
+@keyframes packet-slide {
+  0% { opacity: 0; transform: translateX(-24px) translateY(-50%); }
+  25% { opacity: 0.55; }
+  100% { opacity: 0; transform: translateX(340px) translateY(-50%); }
+}
+
+/* ---------- 6. Skills: selectable technology chips ---------- */
+.skill-group__item { padding: 0; border: 0; background: none; }
+
+.skill-chip {
+  font: inherit;
+  color: inherit;
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface-soft);
+  cursor: pointer;
+  transition:
+    border-color var(--dur-micro) var(--ease-out),
+    background-color var(--dur-micro) var(--ease-out),
+    color var(--dur-micro) var(--ease-out),
+    transform var(--dur-micro) var(--ease-out);
+}
+.skill-chip:hover {
+  border-color: var(--line-accent);
+  color: var(--text-0);
+  transform: translateY(-1px);
+}
+.skill-chip[aria-pressed='true'] {
+  border-color: var(--line-accent);
+  background: var(--accent-dim);
+  color: var(--accent);
+}
+
+.skills__selected {
+  min-height: 44px; /* reserve space so the status line never shifts layout */
+  display: flex;
+  align-items: center;
+  margin-top: var(--space-4);
+}
+.skills__selected-line {
+  animation: fade-in 240ms var(--ease-out) both;
+  color: var(--text-1);
+  font-size: var(--text-small);
+}
+.skills__selected-link {
+  color: var(--flow);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---------- 7. Background: lineage line draws with the timeline ---------- */
+@media (min-width: 768px) {
+  .timeline--lineage::before {
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 900ms var(--ease-in-out) 150ms;
+  }
+  .timeline--lineage.is-visible::before { transform: scaleY(1); }
+}
+
+/* ---------- 8. Certifications: quiet hover lift (color is not the
+     only cue — border + lift + shadow all change together) ---------- */
+.cert:hover {
+  border-color: var(--line-accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-3);
+}
+
+/* ---------- 9. Project modal ---------- */
+.modal-overlay { animation: overlay-in 200ms var(--ease-out) both; }
+
+/* Expand from the clicked card's thumbnail into the centered dialog… */
+.modal.project-modal {
+  transform-origin: center;
+  animation: modal-from-card 450ms var(--ease-out) both;
+}
+
+/* …and shrink back into it on close (unmounted after the animation). */
+.modal.project-modal.is-closing {
+  animation: modal-to-card 320ms var(--ease-out) both;
+}
+
+@keyframes modal-from-card {
+  from {
+    opacity: 0.35;
+    transform: translate(var(--modal-dx, 0px), var(--modal-dy, 0px)) scale(var(--modal-scale, 0.4));
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+@keyframes modal-to-card {
+  from {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    opacity: 0.35;
+    transform: translate(var(--modal-dx, 0px), var(--modal-dy, 0px)) scale(var(--modal-scale, 0.4));
+  }
+}
+
+.modal { position: relative; }
+
+.modal__close {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  background: var(--surface-soft);
+  color: var(--text-1);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 1rem;
+  transition:
+    color var(--dur-micro) var(--ease-out),
+    border-color var(--dur-micro) var(--ease-out),
+    background-color var(--dur-micro) var(--ease-out);
+}
+.modal__close:hover {
+  color: var(--text-0);
+  border-color: var(--line-accent);
+  background: var(--accent-dim);
+}
+
+.project-modal__title { margin-bottom: var(--space-3); }
+.project-modal__media {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  margin-block: var(--space-4);
+}
+.project-modal__purpose { margin-bottom: var(--space-5); }
+.project-modal section { margin-bottom: var(--space-5); }
+.project-modal section .data-label { margin-bottom: var(--space-2); }
+.project-modal .project__highlights,
+.project-modal .project__tech { margin-bottom: 0; }
+.project-modal .project__links { margin-top: var(--space-2); }
+.project-modal__pipeline-text {
+  margin-top: var(--space-3);
+  font-size: var(--text-micro);
+  color: var(--text-2);
+  letter-spacing: 0.06em;
+}
+
+/* ---------- 10. Pipeline flow (illustrative, one pass per open) ---------- */
+.pipeline__stages {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-3);
+}
+.pipeline__stage {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.pipeline__stage:not(:last-child)::after {
+  content: '';
+  width: 22px;
+  height: 2px;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(90deg, var(--accent), var(--flow));
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: connector-fill 260ms var(--ease-out) forwards;
+  animation-delay: calc(var(--stage, 0) * 300ms + 240ms);
+}
+.pipeline__node {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--line-strong);
+  flex: none;
+  animation: node-activate 300ms var(--ease-out) forwards;
+  animation-delay: calc(var(--stage, 0) * 300ms);
+}
+.pipeline__label { color: var(--text-2); }
+.pipeline__stage:nth-child(1) .pipeline__label,
+.pipeline__stage:last-child .pipeline__label { color: var(--text-0); }
+
+@keyframes node-activate {
+  0% { border-color: var(--line-strong); background: var(--surface); }
+  50% { border-color: var(--accent); background: var(--accent-dim); box-shadow: var(--glow-accent); }
+  100% { border-color: var(--accent); background: var(--accent-dim); }
+}
+@keyframes connector-fill {
+  to { transform: scaleX(1); }
+}
+
+/* ---------- 11. Contact copy button ---------- */
+.contact__row {
+  display: grid;
+  gap: var(--space-2);
+}
+.contact__copy { justify-self: start; }
+.contact__copy--done {
+  color: var(--state-healthy);
+  border-color: rgba(125, 240, 182, 0.4);
+  background: var(--state-healthy-dim);
+}
+@media (min-width: 480px) {
+  .contact__row { grid-template-columns: 1fr auto; align-items: center; }
+}
+
+/* ---------- 12. Reduced motion: everything visible, nothing moves ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] > *,
+  .js .hero__content > *,
+  .js .hero__portrait-frame,
+  .js .hero__badge,
+  .intro__lines li {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  .timeline--lineage::before { transform: none !important; transition: none !important; }
+  .pipeline__node, .pipeline__stage:not(:last-child)::after {
+    animation: none !important;
+    border-color: var(--accent) !important;
+    transform: none !important;
+    background: var(--accent-dim) !important;
+  }
+  .btn:hover::after, .btn:focus-visible::after { animation: none !important; }
+}

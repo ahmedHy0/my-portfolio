@@ -1,0 +1,585 @@
+{
+  "meta": {
+    "phase": "02",
+    "site_title": "Ahmed Hany Khairy — Data Engineer",
+    "generated": "2026-09-10"
+  },
+  "information_architecture": {
+    "page_sections": [
+      {
+        "order": 1,
+        "id": "intro",
+        "name": "Initialize Data Session",
+        "in_nav": false
+      },
+      {
+        "order": 2,
+        "id": "hero",
+        "name": "Hero / Data Engineer Identity",
+        "in_nav": false
+      },
+      {
+        "order": 3,
+        "id": "about",
+        "name": "About / Engineer Profile",
+        "in_nav": true,
+        "nav_label": "About"
+      },
+      {
+        "order": 4,
+        "id": "background",
+        "name": "Background (Trainee Experience + Education)",
+        "in_nav": true,
+        "nav_label": "Background"
+      },
+      {
+        "order": 5,
+        "id": "certifications",
+        "name": "Certifications",
+        "in_nav": true,
+        "nav_label": "Certifications"
+      },
+      {
+        "order": 6,
+        "id": "stack",
+        "name": "Skills / Data Stack",
+        "in_nav": true,
+        "nav_label": "Skills"
+      },
+      {
+        "order": 7,
+        "id": "projects",
+        "name": "Projects / Pipeline Case Studies",
+        "in_nav": true,
+        "nav_label": "Projects"
+      },
+      {
+        "order": 8,
+        "id": "contact",
+        "name": "Contact / Open to Opportunities",
+        "in_nav": true,
+        "nav_label": "Contact"
+      }
+    ],
+    "h1_policy": "Exactly one h1, in the hero (name + role composition)."
+  },
+  "intro": {
+    "label": "Initialize Data Session",
+    "duration_max_seconds": 1.5,
+    "skippable": true,
+    "logo_first": true,
+    "lines": [
+      {
+        "text": "PROFILE STREAM: READY"
+      },
+      {
+        "text": "ENGINEERING CONTEXT: LOADED"
+      },
+      {
+        "text": "PROJECT PIPELINES: INDEXED"
+      },
+      {
+        "text": "PUBLIC PORTFOLIO: OPEN"
+      }
+    ]
+  },
+  "profile": {
+    "full_name": "Ahmed Hany Khairy",
+    "short_name": "Ahmed Hany",
+    "role_line": "Junior Data Engineer",
+    "role_qualifier": "Data Engineering Trainee @ DEPI · AI Engineering Student",
+    "target_role": "Junior Data Engineer",
+    "location": "Cairo, Egypt",
+    "availability": "training in progress",
+    "headline_source_info_md": "Aspiring Data Engineer | Data Engineering Trainee @ DEPI | Python & SQL | ETL & Data Pipelines | AI Engineering Student"
+  },
+  "hero": {
+    "eyebrow": "Cairo, Egypt — training in progress",
+    "name": "Ahmed Hany Khairy",
+    "role_line": "Junior Data Engineer",
+    "role_qualifier": "Data Engineering Trainee @ DEPI · AI Engineering Student",
+    "positioning_statement": "I build ETL pipelines with Python and SQL — from raw multi-source files to validated, well-modeled PostgreSQL warehouses — currently training in the DEPI Data Engineering track while finishing my BSc in Artificial Intelligence.",
+    "metadata": [
+      {
+        "label": "Focus",
+        "value": "Data Engineering"
+      },
+      {
+        "label": "Stack",
+        "value": "Python · SQL · ETL/ELT · PostgreSQL"
+      },
+      {
+        "label": "Status",
+        "value": "training in progress"
+      }
+    ],
+    "ctas": {
+      "primary": {
+        "label": "View projects",
+        "target": "#projects"
+      },
+      "secondary": {
+        "label": "Download CV",
+        "target": "asset:cv"
+      },
+      "tertiary": {
+        "label": "Contact me",
+        "target": "#contact"
+      }
+    },
+    "portrait": {
+      "file": "Assets/profile.jpg",
+      "alt": "Portrait of Ahmed Hany Khairy",
+      "dimensions": "400x400"
+    },
+    "diagram": "Visual pipeline/lineage connecting the portrait to the data systems he works with (source files, transformation, PostgreSQL warehouse); accessible text equivalent required."
+  },
+  "about": {
+    "nav_label": "About",
+    "human_paragraph": "I'm Ahmed — an Artificial Intelligence undergraduate at the Faculty of Artificial Intelligence in Kafr El-Sheikh, based in Cairo. Outside coursework you'll find me in programming-club workshops and algorithmic problem-solving sessions, or building database-automation tools with teammates at hackathons.",
+    "engineering_paragraph": "My work sits on the path from raw files to reliable data: extraction scripts that ingest multi-source batches, transformation routines with type casting, null checks and duplicate removal, and normalized PostgreSQL warehouses queried through tuned SQL. I like the parts of the job where correctness is measurable.",
+    "flow_diagram": {
+      "steps": [
+        "EXTRACT",
+        "TRANSFORM",
+        "LOAD",
+        "OPTIMIZE"
+      ],
+      "text_equivalent": "Ahmed's work follows the data path: raw multi-source files are extracted, transformed with validated Python and SQL routines, loaded into a normalized PostgreSQL warehouse, and queried through optimized SQL."
+    },
+    "evidence_tags": [
+      "ETL / ELT Pipelines",
+      "Data Warehousing",
+      "SQL Optimization",
+      "Data Modeling · 3NF",
+      "Data Validation",
+      "Pandas · NumPy",
+      "Git & GitHub"
+    ]
+  },
+  "skills": {
+    "nav_label": "Stack",
+    "groups": [
+      {
+        "id": "languages",
+        "label": "Languages",
+        "items": [
+          "Python",
+          "SQL",
+          "C++",
+          "JavaScript"
+        ]
+      },
+      {
+        "id": "data-engineering",
+        "label": "Data Engineering",
+        "items": [
+          "ETL/ELT Pipelines",
+          "Data Warehousing",
+          "Data Normalization",
+          "Pandas",
+          "NumPy"
+        ]
+      },
+      {
+        "id": "databases",
+        "label": "Databases",
+        "items": [
+          "PostgreSQL",
+          "MySQL",
+          "Relational Schema Design",
+          "Query Optimization"
+        ]
+      },
+      {
+        "id": "tools",
+        "label": "Tools & Platforms",
+        "items": [
+          "Git",
+          "GitHub",
+          "Visual Studio Code",
+          "Linux Terminal"
+        ]
+      }
+    ],
+    "spoken_languages": [
+      {
+        "name": "Arabic",
+        "level": "Native"
+      },
+      {
+        "name": "English",
+        "level": "Fluent"
+      }
+    ],
+    "proficiency_ratings": null
+  },
+  "background": {
+    "nav_label": "Background",
+    "timeline_frame": [
+      "Foundation",
+      "Learning",
+      "Practice",
+      "Projects",
+      "Next opportunity"
+    ],
+    "entries": [
+      {
+        "id": "depi-trainee",
+        "kind": "experience",
+        "honest_type": "Traineeship (practicum)",
+        "period": "01/2026 – Present",
+        "organization": "Digital Egypt Pioneers Initiative (DEPI)",
+        "title": "Junior Data Engineering Trainee",
+        "description": "Professional data engineering practicum: end-to-end ETL pipelines in Python and SQL, loading validated datasets into a centralized PostgreSQL warehouse.",
+        "highlights": [
+          "Designed end-to-end ETL pipelines with Python and SQL into a centralized PostgreSQL data warehouse",
+          "Wrote and optimized complex SQL — window functions and indexes — cutting query execution times on large tables",
+          "Built data validation, error handling, and type-checking routines with Pandas and NumPy for staging-layer quality"
+        ]
+      },
+      {
+        "id": "academic-database-work",
+        "kind": "experience",
+        "honest_type": "Academic project work",
+        "period": "09/2025 – 06/2026",
+        "organization": "University Faculty Portfolio Work",
+        "title": "Database & Backend Developer (Academic Projects)",
+        "description": "Relational schema design and Python batch-ingestion automation for faculty portfolio systems.",
+        "highlights": [
+          "Architected and normalized relational schemas to Third Normal Form (3NF)",
+          "Developed modular Python scripts for scheduled batch file ingestion, parsing, and automated database loading",
+          "Managed version control workflows, code reviews, and documentation with Git, GitHub, and VS Code"
+        ]
+      },
+      {
+        "id": "depi-track",
+        "kind": "education",
+        "period": "01/2026 – Present",
+        "organization": "Digital Egypt Pioneers Initiative (DEPI)",
+        "title": "Data Engineering Track",
+        "description": "Intensive professional program covering enterprise data warehousing, advanced SQL optimization, and ETL/ELT pipeline design."
+      },
+      {
+        "id": "bsc-ai",
+        "kind": "education",
+        "period": "Expected 06/2027",
+        "organization": "Faculty of Artificial Intelligence, Kafr El-Sheikh, Egypt",
+        "title": "BSc in Artificial Intelligence",
+        "description": "Undergraduate degree in Artificial Intelligence; expected graduation June 2027."
+      }
+    ],
+    "practice_projects": [
+      {
+        "title": "Enterprise ETL Pipeline & Data Warehouse Mockup",
+        "stack": [
+          "Python",
+          "PostgreSQL",
+          "SQL"
+        ],
+        "description": "Scalable ingestion script extracting raw batch records from multi-source files into a normalized staging database, with type casting, null-value checks, and duplicate removal before warehouse loading."
+      },
+      {
+        "title": "Automated Log Data Processing & Analytics Tool",
+        "stack": [
+          "Python",
+          "Pandas",
+          "NumPy",
+          "SQLite"
+        ],
+        "description": "Command-line analytics utility parsing large structured server log files, aggregating performance statistics with Pandas and vectorized NumPy operations into relational summary tables."
+      }
+    ],
+    "activities": [
+      "University Programming Club Member — collaborative coding workshops, algorithmic problem-solving sessions, peer code reviews",
+      "Technical Hackathons Contributor — team-based software challenges focused on database automation tools"
+    ]
+  },
+  "certifications": [
+    {
+      "name": "Associate Data Analyst in SQL",
+      "issuer": "DataCamp",
+      "date": "02/2026",
+      "credential_id": null,
+      "verification_url": null
+    },
+    {
+      "name": "Professional Data Engineer in Python",
+      "issuer": "DataCamp",
+      "date": "05/2026",
+      "credential_id": null,
+      "verification_url": null
+    },
+    {
+      "name": "Google Data Analytics Professional Certificate",
+      "issuer": "Google",
+      "date": "08/2026",
+      "credential_id": null,
+      "verification_url": null
+    }
+  ],
+  "projects": [
+    {
+      "id": "smartphone-specification-analysis",
+      "title": "Smartphone Specification Analysis 2025",
+      "category": "Data Analysis",
+      "project_type": "Personal project",
+      "one_liner": "Exploratory analysis of 930+ smartphones across the 2025 market — comparing specifications, pricing, and performance tiers.",
+      "purpose": "Examine trends in the 2025 smartphone market by comparing device specifications, pricing, and performance tiers across multiple brands.",
+      "technologies": [
+        {
+          "group": "Analysis",
+          "items": [
+            "Python",
+            "Pandas",
+            "NumPy",
+            "Matplotlib",
+            "Jupyter Notebook"
+          ]
+        }
+      ],
+      "highlights": [
+        "Data cleaning and preprocessing: missing-value handling, duplicate detection and removal, outlier analysis and filtering",
+        "Feature engineering: categorization into RAM-based performance tiers — Budget, Mid-Range, Flagship",
+        "Statistical analysis and feature normalization for unbiased comparison across specifications and pricing",
+        "Visual analysis: pricing vs. performance scatter plots, specification distribution histograms (RAM, battery, display), and market trend analysis"
+      ],
+      "pipeline": {
+        "stages": [
+          "COLLECT",
+          "CLEAN",
+          "ENGINEER",
+          "ANALYZE",
+          "VISUALIZE"
+        ],
+        "text_equivalent": "The notebook loads the smartphone dataset, cleans it (missing values, duplicates, outliers), engineers RAM-based performance tiers, runs descriptive statistics on normalized features, and produces comparison visualizations."
+      },
+      "links": {
+        "repository": "https://github.com/ahmedHy0/smartphone-specification",
+        "live_demo": null
+      },
+      "preview": {
+        "alt": "Jupyter Notebook screenshot of the smartphone analysis: dataset preview, performance-versus-price scatter plot, and weight distribution histogram",
+        "dimensions": "1672x941"
+      },
+      "results": "Analysis outputs only — statistics, tier comparisons, and visualizations. No deployment, live demo, or production claims."
+    },
+    {
+      "id": "dataflow-monitor",
+      "title": "DataFlow Monitor",
+      "title_suffix": "Real-time Pipeline Analytics",
+      "category": "Data Engineering · Monitoring",
+      "project_type": "Personal project",
+      "one_liner": "A monitoring dashboard that tracks ETL/ELT pipelines in real time — pipeline health, throughput, quality metrics, and alerts across multiple data sources.",
+      "purpose": "Track ETL/ELT data pipelines in real time: visualize pipeline health, data throughput, quality metrics, and alerts across multiple data sources.",
+      "technologies": [
+        {
+          "group": "Backend",
+          "items": [
+            "Python",
+            "FastAPI",
+            "Apache Airflow",
+            "Apache Kafka"
+          ]
+        },
+        {
+          "group": "Database",
+          "items": [
+            "PostgreSQL",
+            "Redis"
+          ]
+        },
+        {
+          "group": "Frontend",
+          "items": [
+            "React",
+            "D3.js",
+            "Chart.js"
+          ]
+        },
+        {
+          "group": "Monitoring",
+          "items": [
+            "Grafana",
+            "Prometheus"
+          ]
+        },
+        {
+          "group": "DevOps",
+          "items": [
+            "Docker"
+          ]
+        }
+      ],
+      "highlights": [
+        "Real-time pipeline status tracking: active job monitoring, automated stage completion logging, instant failure and bottleneck alerts",
+        "Data-flow architecture visualization: data movement and transformation paths, dynamic component connection diagrams",
+        "Throughput and latency monitoring: processing rates, payload metrics, and bottleneck tracking",
+        "Data quality scoring: completeness and freshness evaluation"
+      ],
+      "pipeline": {
+        "stages": [
+          "SOURCES",
+          "EXTRACT",
+          "TRANSFORM",
+          "LOAD",
+          "SERVE"
+        ],
+        "text_equivalent": "Data from sources such as APIs, Kafka streams, and FTP feeds is extracted, transformed, and loaded into a warehouse or analytics database, while the dashboard tracks health, throughput, latency, and data quality at every stage."
+      },
+      "links": {
+        "repository": null,
+        "live_demo": null,
+        "github_profile_fallback": "https://github.com/ahmedHy0"
+      },
+      "preview": {
+        "alt": "DataFlow Monitor dashboard showing the pipeline flow architecture, pipeline performance bars, 24-hour throughput chart, and data quality alerts",
+        "dimensions": "1344x768"
+      },
+      "results": "Built application interface; no deployment or live demo documented."
+    },
+    {
+      "id": "businessinsights-hub",
+      "title": "BusinessInsights Hub",
+      "title_suffix": "Unified Analytics Platform",
+      "category": "Business Intelligence · Analytics",
+      "project_type": "Personal project",
+      "one_liner": "A BI platform that consolidates sales, customer, inventory, and finance data into one interactive dashboard for KPI tracking and data-driven decisions.",
+      "purpose": "Consolidate data from multiple sources — sales, customers, inventory, finance — into a single interactive interface that helps businesses track KPIs, analyze revenue trends, segment customers, and make data-driven decisions.",
+      "technologies": [
+        {
+          "group": "Data Pipeline",
+          "items": [
+            "Apache Airflow",
+            "dbt",
+            "Apache Spark"
+          ]
+        },
+        {
+          "group": "Backend",
+          "items": [
+            "Python",
+            "FastAPI",
+            "SQLAlchemy"
+          ]
+        },
+        {
+          "group": "Database",
+          "items": [
+            "PostgreSQL",
+            "Redis"
+          ]
+        },
+        {
+          "group": "Frontend",
+          "items": [
+            "React (Next.js)",
+            "Recharts",
+            "Tailwind CSS"
+          ]
+        },
+        {
+          "group": "Cloud & DevOps",
+          "items": [
+            "AWS S3",
+            "Docker",
+            "GitHub Actions"
+          ]
+        }
+      ],
+      "highlights": [
+        "Unified KPI and revenue analytics: real-time tracking for revenue, profit margins, and active customers; monthly/yearly trend comparisons; category-wise sales breakdowns",
+        "Customer segmentation: automated RFM (Recency, Frequency, Monetary) classification, behavioral tracking across sales channels, retention and churn-risk metrics",
+        "Inventory and product performance: top-product rankings by sales volume and margin, low-stock and reorder-point notifications, stock turn rate analysis",
+        "Interactive reporting: dynamic date-range and multi-region filtering, scheduled PDF/Excel exports, low-latency dashboard caching with Redis"
+      ],
+      "pipeline": {
+        "stages": [
+          "SOURCES",
+          "PIPELINE",
+          "STORE",
+          "SERVE"
+        ],
+        "text_equivalent": "Sales, customer, inventory, and finance data is moved through an Airflow pipeline with dbt transformations and Spark processing, stored in PostgreSQL with Redis caching, and served through a Next.js analytics dashboard with exportable reports."
+      },
+      "links": {
+        "repository": null,
+        "live_demo": null,
+        "github_profile_fallback": "https://github.com/ahmedHy0"
+      },
+      "preview": {
+        "alt": "BusinessInsights Hub dashboard with KPI cards, monthly revenue trend, sales by category, top products ranking, and customer segmentation scatter plot",
+        "dimensions": "1344x768"
+      },
+      "results": "Built application interface; no deployment or live demo documented."
+    }
+  ],
+  "optional_pipeline_replay": {
+    "decision": "deferred",
+    "recommendation": "All three project documents describe enough architecture for a static architecture walkthrough per project. An interactive sample-data replay is most defensible for DataFlow Monitor; if built later it must carry the label 'Interactive demonstration using sample data'. Final call belongs to the case-study phase."
+  },
+  "contact": {
+    "nav_label": "Contact",
+    "heading": "Get In Touch",
+    "statement": "I'm looking for a Junior Data Engineer position where I can build reliable ETL pipelines, well-modeled warehouses, and fast SQL. Based in Cairo, Egypt.",
+    "links": [
+      {
+        "label": "Email",
+        "display": "ahmed.hy2006@gmail.com",
+        "href": "mailto:ahmed.hy2006@gmail.com"
+      },
+      {
+        "label": "LinkedIn",
+        "display": "linkedin.com/in/ahmed8hany",
+        "href": "https://www.linkedin.com/in/ahmed8hany"
+      },
+      {
+        "label": "GitHub",
+        "display": "github.com/ahmedHy0",
+        "href": "https://github.com/ahmedHy0"
+      },
+      {
+        "label": "Download CV",
+        "display": "CV (PDF)",
+        "href": "asset:cv"
+      }
+    ],
+    "location": "Cairo, Egypt",
+    "phone": {
+      "value": "+20 122 607 0314",
+      "publish_on_site": false
+    },
+    "subtitle": "open for opportunities"
+  },
+  "assets": {
+    "logo": {
+      "file": "Assets/logo.jpg",
+      "format": "JPEG, no transparency, dark background baked in",
+      "dimensions": "1024x572",
+      "description": "AH monogram formed from circuit traces ending in nodes, with a data-flow arrow; mint/aqua-to-glacier-blue gradient on near-black",
+      "color_reading": "Mint/aqua + glacier blue on near-black — matches the addendum's aqua/cyan logo guidance",
+      "usage": [
+        "Header/nav with brand name",
+        "Intro identity anchor",
+        "Footer closing mark",
+        "Simplified derived favicon mark"
+      ]
+    },
+    "portrait": {
+      "file": "Assets/profile.jpg",
+      "format": "JPEG, progressive, light background",
+      "dimensions": "400x400",
+      "description": "Professional headshot of Ahmed Hany Khairy in a dark suit",
+      "usage": [
+        "Hero portrait with restrained gradient/scan treatment"
+      ]
+    },
+    "cv": {
+      "file": "Assets/cv.pdf",
+      "pages": 1,
+      "usage": [
+        "Download CV action in hero and contact sections"
+      ]
+    }
+  }
+}

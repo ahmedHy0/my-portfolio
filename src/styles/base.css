@@ -1,0 +1,412 @@
+/* ============================================================
+   GLOBAL BASE — reset, typography, background system,
+   buttons, cards, forms, focus states. Built on tokens.css.
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--bg-0);
+  color: var(--text-1);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ---------- Layered background system ----------
+   1. fine grid   2. two soft atmospheric glows (logo colors, very low alpha)
+   Fixed attachment only on wide screens; mobile keeps it static + cheap. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    linear-gradient(rgba(148, 188, 214, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 188, 214, 0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 20%, black 30%, transparent 100%);
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  background:
+    radial-gradient(ellipse 60% 45% at 18% -5%, var(--accent-dim), transparent 65%),
+    radial-gradient(ellipse 55% 40% at 90% 12%, var(--flow-dim), transparent 65%),
+    var(--bg-0);
+}
+
+@media (max-width: 767px) {
+  body::before {
+    background-size: 32px 32px;
+    mask-image: none;
+    opacity: 0.6;
+  }
+}
+
+/* ---------- Typography ---------- */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--text-0);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+/* The single h1 (the name): uppercase with a white→cyan gradient fill. */
+h1 {
+  font-size: var(--text-display-1);
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #ffffff 0%, #00f3ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+h2 { font-size: var(--text-display-2); }
+h3 { font-size: var(--text-heading); }
+
+/* Section headlines: uppercase with a white→cyan horizontal gradient. */
+.section h2,
+.contact__heading {
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  background: linear-gradient(90deg, #ffffff 0%, #00f3ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+p { max-width: 68ch; }
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+  transition: color var(--dur-micro) var(--ease-out);
+}
+
+a:hover { color: var(--accent-strong); }
+
+code, kbd, pre, .mono {
+  font-family: var(--font-mono);
+  font-variant-ligatures: none;
+}
+
+.data-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+strong, b { color: var(--text-0); }
+
+::selection {
+  background: var(--accent-dim);
+  color: var(--text-0);
+}
+
+/* ---------- Focus: single site-wide rule, never removed ---------- */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-xs);
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--space-4);
+  top: -100px;
+  z-index: 100;
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface);
+  color: var(--text-0);
+  border: 1px solid var(--line-accent);
+  border-radius: var(--radius-sm);
+  transition: top var(--dur-micro) var(--ease-out);
+}
+
+.skip-link:focus-visible { top: var(--space-4); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: var(--space-3) var(--space-5);
+  font-family: var(--font-display);
+  font-size: var(--text-small);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-micro) var(--ease-out),
+    border-color var(--dur-micro) var(--ease-out),
+    color var(--dur-micro) var(--ease-out),
+    box-shadow var(--dur-micro) var(--ease-out),
+    transform var(--dur-micro) var(--ease-out);
+}
+
+.btn:active { transform: translateY(1px); }
+
+.btn-primary {
+  background: var(--cursor-glow);
+  color: #0d1117;
+}
+
+/* Solid cyan buttons keep dark, readable labels in every state — the global
+   a:hover rule would otherwise wash the text into the cyan fill. */
+.btn-primary:hover,
+.btn-primary:focus-visible,
+a.btn-primary:hover {
+  background: #33f5ff;
+  color: #0d1117 !important;
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-0);
+  border-color: var(--line-strong);
+}
+
+.btn-secondary:hover {
+  border-color: var(--line-accent);
+  background: var(--accent-dim);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-1);
+}
+
+.btn-ghost:hover { color: var(--accent-strong); }
+
+/* ---------- Cards / surfaces ---------- */
+.card {
+  background: var(--surface-glass);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-2);
+  transition:
+    border-color var(--dur-micro) var(--ease-out),
+    transform var(--dur-micro) var(--ease-out),
+    box-shadow var(--dur-micro) var(--ease-out);
+}
+
+.card--interactive:hover,
+.card--interactive:focus-within {
+  border-color: var(--line-accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-3);
+}
+
+/* ---------- Forms ---------- */
+.input {
+  min-height: 44px;
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface);
+  color: var(--text-0);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  font: inherit;
+  transition: border-color var(--dur-micro) var(--ease-out);
+}
+
+.input::placeholder { color: var(--text-3); }
+.input:hover { border-color: var(--line-accent); }
+
+/* ---------- Status chips (state colors always paired with a label,
+   never color alone) ---------- */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line);
+  color: var(--text-1);
+  background: var(--surface);
+}
+
+.chip::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-2);
+}
+
+.chip--healthy { color: var(--state-healthy); border-color: rgba(125, 240, 182, 0.35); background: var(--state-healthy-dim); }
+.chip--healthy::before { background: var(--state-healthy); }
+.chip--warning { color: var(--state-warning); border-color: rgba(255, 200, 87, 0.35); background: var(--state-warning-dim); }
+.chip--warning::before { background: var(--state-warning); }
+.chip--error { color: var(--state-error); border-color: rgba(255, 115, 115, 0.35); background: var(--state-error-dim); }
+.chip--error::before { background: var(--state-error); }
+.chip--accent { color: var(--accent); border-color: var(--line-accent); background: var(--accent-dim); }
+.chip--accent::before { background: var(--accent); }
+
+/* ---------- Modals ---------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(4, 7, 11, 0.72);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+}
+
+.modal {
+  width: min(680px, 100%);
+  max-height: min(85vh, 100%);
+  overflow: auto;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-3);
+  padding: var(--space-6);
+}
+
+@media (max-width: 767px) {
+  .modal-overlay { padding: 0; align-items: flex-end; }
+  .modal-overlay > .modal { width: 100%; }
+  .modal { width: 100%; max-height: 92vh; border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+}
+
+/* ---------- Layout helpers ---------- */
+.container {
+  width: 100%;
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--space-5);
+}
+
+.section {
+  padding-block: var(--space-9);
+}
+
+@media (max-width: 767px) {
+  .section { padding-block: var(--space-8); }
+  .container { padding-inline: var(--space-4); }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Custom cursor (desktop fine pointers only) ---------- */
+.cursor-follower {
+  /* Never rendered unless JS confirms (hover: hover) and (pointer: fine). */
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* Above everything, including the modal overlay (z-index 1000). */
+  z-index: 99999;
+  pointer-events: none;
+  opacity: 0;
+  transition:
+    opacity var(--dur-micro) var(--ease-out),
+    transform 120ms linear; /* trailing smoothness; collapses under reduced motion */
+  will-change: transform;
+}
+
+body.custom-cursor .cursor-follower { display: block; }
+body.custom-cursor .cursor-follower.is-visible { opacity: 1; }
+
+@media (hover: hover) and (pointer: fine) {
+  /* Global override: no native cursor (arrow, I-beam, resize, …) may leak
+     through anywhere while the custom cursor is active. */
+  body.custom-cursor,
+  body.custom-cursor * {
+    cursor: none !important;
+  }
+}
+
+/* Selected text keeps the themed treatment even with the custom cursor. */
+body.custom-cursor ::selection {
+  background: var(--accent-dim);
+  color: var(--text-0);
+}
+
+.cursor-follower__glyph {
+  /* Left/top tip of the arrow sits exactly on the pointer coordinates. */
+  margin: -3px 0 0 -3px;
+  filter:
+    drop-shadow(0 0 3px var(--cursor-glow))
+    drop-shadow(0 2px 6px rgba(2, 5, 9, 0.6));
+  transform: scale(1);
+  transition: filter var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+}
+
+/* --- Glyph variants: only the active state's glyph is shown --- */
+.cursor-glyph { display: none; }
+
+.cursor-follower[data-state='default'] .cursor-glyph--default,
+.cursor-follower[data-state='pointer'] .cursor-glyph--pointer,
+.cursor-follower[data-state='text'] .cursor-glyph--text,
+.cursor-follower[data-state='scroll-down'] .cursor-glyph--scroll-down,
+.cursor-follower[data-state='scroll-up'] .cursor-glyph--scroll-up {
+  display: block;
+}
+
+/* I-beam and scroll glyphs are centered on the pointer instead of tip-anchored. */
+.cursor-follower[data-state='text'] .cursor-follower__glyph { margin: -15px 0 0 -15px; }
+.cursor-follower[data-state='scroll-down'] .cursor-follower__glyph,
+.cursor-follower[data-state='scroll-up'] .cursor-follower__glyph { margin: -17px 0 0 -17px; }
+
+/* Hover over anything pressable: intensified glow pulse. */
+.cursor-follower.is-hover .cursor-follower__glyph {
+  filter:
+    drop-shadow(0 0 5px var(--cursor-glow))
+    drop-shadow(0 0 14px var(--cursor-glow))
+    drop-shadow(0 0 28px var(--cursor-glow));
+  transform: scale(1.15);
+}
+
+/* Click: brief compress. */
+.cursor-follower.is-active .cursor-follower__glyph {
+  transform: scale(0.8);
+  filter:
+    drop-shadow(0 0 8px var(--cursor-glow))
+    drop-shadow(0 0 20px var(--cursor-glow));
+}

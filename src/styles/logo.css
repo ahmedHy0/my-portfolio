@@ -1,0 +1,30 @@
+/* Logo treatment — clear space, alignment, name pairing.
+   The mark itself is never recolored, stretched, or animated. */
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  /* clear space equal to ~half the mark height around the mark */
+  padding: var(--space-2);
+}
+
+.logo__mark {
+  display: block;
+  width: auto;
+  filter: drop-shadow(0 0 12px rgba(79, 216, 209, 0.18));
+}
+
+.logo__name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-small);
+  letter-spacing: 0.06em;
+  color: var(--text-0);
+  white-space: nowrap;
+}
+
+.logo__name-dim {
+  color: var(--text-2);
+  font-weight: 400;
+}
